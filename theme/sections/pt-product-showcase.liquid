@@ -1,0 +1,372 @@
+{{ 'pt-product-showcase.css' | asset_url | stylesheet_tag }}
+
+<section class="pt-product-showcase" data-mobile-title-align="{{ section.settings.mobile_product_title_align }}" style="--product-title-font: {{ section.settings.product_title_font }};">
+  <div class="pt-showcase-container">
+    <h2 class="pt-showcase-title" style="font-size: {{ section.settings.title_font_size }}px; font-weight: {{ section.settings.title_font_weight }}; font-style: {{ section.settings.title_font_style }}; margin-top: {{ section.settings.title_margin_top }}px; margin-bottom: {{ section.settings.title_margin_bottom }}px;">
+      {{ section.settings.section_title }}
+    </h2>
+    
+    <div class="pt-showcase-slider">
+      {% for block in section.blocks %}
+        {% assign product = block.settings.product %}
+        {% if product %}
+          <div class="pt-showcase-slide {% if forloop.first %}active{% endif %}" data-slide-index="{{ forloop.index0 }}">
+            
+            <!-- Left: Product Info -->
+            <div class="pt-showcase-left">
+              <a href="{{ product.url }}" class="pt-product-title-link">
+                <h3 class="pt-product-title">{{ product.title }}</h3>
+              </a>
+              {% if product.description != blank %}
+                <div class="pt-product-description">
+                  {{ product.description | truncate: 200 }}
+                </div>
+              {% endif %}
+            </div>
+            
+            <!-- Center: Product Image with Navigation -->
+            <div class="pt-showcase-center">
+              <!-- Navigation prev (left on mobile) -->
+              <button class="pt-showcase-nav pt-nav-prev pt-nav-mobile-left" aria-label="Previous product">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+              </button>
+              
+              <div class="pt-image-container" data-tilt>
+                <a href="{{ product.url }}" class="pt-image-link">
+                  {% if product.featured_image %}
+                    <img 
+                      src="{{ product.featured_image | image_url: width: 600 }}" 
+                      alt="{{ product.title }}"
+                      class="pt-showcase-image"
+                      loading="lazy"
+                    >
+                  {% endif %}
+                  
+                  <!-- Price overlay on left -->
+                  <span class="pt-product-price-overlay">{{ product.price | money }}</span>
+                  
+                  {% if product.available == false %}
+                    <span class="pt-sold-out-badge">Sold out</span>
+                  {% endif %}
+                </a>
+              </div>
+              
+              <!-- Navigation next (right on mobile) -->
+              <button class="pt-showcase-nav pt-nav-next pt-nav-mobile-right" aria-label="Next product">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </button>
+              
+              <!-- Navigation beside image (desktop only) -->
+              <div class="pt-showcase-nav-side pt-nav-desktop">
+                <button class="pt-showcase-nav pt-nav-prev" aria-label="Previous product">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                  </svg>
+                </button>
+                <button class="pt-showcase-nav pt-nav-next" aria-label="Next product">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            
+            <!-- Right: Size Selector & Add to Cart -->
+            <div class="pt-showcase-right">
+              <form action="/cart/add" method="post" class="pt-product-form">
+                {% unless product.has_only_default_variant %}
+                  <div class="pt-size-selector">
+                    <label>SIZE</label>
+                    <input type="hidden" name="id" class="selected-variant-id" value="{{ product.variants.first.id }}">
+                    <div class="pt-size-buttons">
+                      {% for variant in product.variants %}
+                        <button 
+                          type="button"
+                          class="pt-size-btn {% if forloop.first %}active{% endif %}"
+                          data-variant-id="{{ variant.id }}"
+                          data-variant-price="{{ variant.price | money }}"
+                          {% unless variant.available %}disabled{% endunless %}
+                        >
+                          {{ variant.title }}
+                        </button>
+                      {% endfor %}
+                    </div>
+                  </div>
+                {% else %}
+                  <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+                {% endunless %}
+                
+                <button 
+                  type="submit" 
+                  class="pt-add-to-cart-btn"
+                  {% unless product.available %}disabled{% endunless %}
+                >
+                  {% if product.available %}
+                    Add to Cart
+                  {% else %}
+                    Sold Out
+                  {% endif %}
+                </button>
+              </form>
+            </div>
+            
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    
+  </div>
+</section>
+
+<script>
+  class PTProductShowcase {
+    constructor() {
+      this.slides = document.querySelectorAll('.pt-showcase-slide');
+      this.currentSlide = 0;
+      this.prevBtns = document.querySelectorAll('.pt-nav-prev');
+      this.nextBtns = document.querySelectorAll('.pt-nav-next');
+      
+      this.init();
+      this.init3DTilt();
+      this.initSizeButtons();
+    }
+    
+    init() {
+      this.prevBtns.forEach(btn => {
+        btn.addEventListener('click', () => this.navigate(-1));
+      });
+      
+      this.nextBtns.forEach(btn => {
+        btn.addEventListener('click', () => this.navigate(1));
+      });
+    }
+    
+    navigate(direction) {
+      this.slides[this.currentSlide].classList.remove('active');
+      this.slides[this.currentSlide].classList.add('slide-out');
+      
+      setTimeout(() => {
+        this.slides[this.currentSlide].classList.remove('slide-out');
+      }, 500);
+      
+      this.currentSlide = (this.currentSlide + direction + this.slides.length) % this.slides.length;
+      
+      this.slides[this.currentSlide].classList.add('active');
+    }
+    
+    init3DTilt() {
+      const tiltElements = document.querySelectorAll('[data-tilt]');
+      
+      tiltElements.forEach(element => {
+        element.addEventListener('mousemove', (e) => {
+          const rect = element.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          
+          const rotateX = (y - centerY) / 10;
+          const rotateY = (centerX - x) / 10;
+          
+          element.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+        });
+        
+        element.addEventListener('mouseleave', () => {
+          element.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+        });
+      });
+    }
+    
+    initSizeButtons() {
+      const sizeButtons = document.querySelectorAll('.pt-size-btn');
+      
+      sizeButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+          const form = this.closest('.pt-product-form');
+          const hiddenInput = form.querySelector('.selected-variant-id');
+          
+          form.querySelectorAll('.pt-size-btn').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          
+          if (hiddenInput) {
+            hiddenInput.value = this.dataset.variantId;
+          }
+        });
+      });
+    }
+  }
+  
+  // Scroll animation observer
+  class ScrollAnimationObserver {
+    constructor() {
+      this.observeElements();
+    }
+    
+    observeElements() {
+      const imageContainers = document.querySelectorAll('.pt-image-container');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.2,
+        rootMargin: '0px 0px -100px 0px'
+      });
+      
+      imageContainers.forEach(container => {
+        observer.observe(container);
+      });
+    }
+  }
+  
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      new PTProductShowcase();
+      new ScrollAnimationObserver();
+    });
+  } else {
+    new PTProductShowcase();
+    new ScrollAnimationObserver();
+  }
+</script>
+
+{% schema %}
+{
+  "name": "PT Product Showcase",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Products"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "min": 20,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Title Font Size",
+      "default": 48
+    },
+    {
+      "type": "select",
+      "id": "title_font_weight",
+      "label": "Title Font Weight",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "800", "label": "Extra Bold" },
+        { "value": "900", "label": "Black" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "select",
+      "id": "title_font_style",
+      "label": "Title Font Style",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "range",
+      "id": "title_margin_top",
+      "min": -50,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Title Margin Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "title_margin_bottom",
+      "min": -50,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Title Margin Bottom",
+      "default": 60
+    },
+    {
+      "type": "select",
+      "id": "mobile_product_title_align",
+      "label": "Mobile Product Title Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "select",
+      "id": "product_title_font",
+      "label": "Product Title Font Family",
+      "options": [
+        { "value": "Ubuntu, sans-serif", "label": "Ubuntu" },
+        { "value": "Arial, sans-serif", "label": "Arial" },
+        { "value": "Helvetica, sans-serif", "label": "Helvetica" },
+        { "value": "Georgia, serif", "label": "Georgia" },
+        { "value": "Times New Roman, serif", "label": "Times New Roman" },
+        { "value": "Courier New, monospace", "label": "Courier New" },
+        { "value": "Verdana, sans-serif", "label": "Verdana" },
+        { "value": "Trebuchet MS, sans-serif", "label": "Trebuchet MS" },
+        { "value": "Impact, sans-serif", "label": "Impact" },
+        { "value": "Palatino, serif", "label": "Palatino" },
+        { "value": "Garamond, serif", "label": "Garamond" },
+        { "value": "Bookman, serif", "label": "Bookman" },
+        { "value": "Comic Sans MS, cursive", "label": "Comic Sans MS" },
+        { "value": "Candara, sans-serif", "label": "Candara" },
+        { "value": "Arial Black, sans-serif", "label": "Arial Black" }
+      ],
+      "default": "Ubuntu, sans-serif"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "PT Product Showcase",
+      "blocks": [
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

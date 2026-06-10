@@ -1,0 +1,370 @@
+{{ 'pt-simple-hero.css' | asset_url | stylesheet_tag }}
+
+<style>
+  #pt-simple-hero-{{ section.id }} {
+    height: {{ section.settings.hero_height }}vh;
+    min-height: {{ section.settings.hero_height }}vh;
+  }
+  
+  #pt-simple-hero-{{ section.id }} .pt-hero-img {
+    transform: scale({{ section.settings.image_scale | divided_by: 100.0 }});
+  }
+  
+  #pt-simple-hero-{{ section.id }} .pt-collection-name {
+    font-family: '{{ section.settings.collection_font }}', sans-serif;
+    font-size: {{ section.settings.collection_font_size }}px;
+    font-weight: {{ section.settings.collection_font_weight }};
+  }
+  
+  #pt-simple-hero-{{ section.id }} .pt-hero-tagline {
+    font-family: '{{ section.settings.tagline_font }}', sans-serif;
+    font-size: {{ section.settings.tagline_font_size }}px;
+    font-weight: {{ section.settings.tagline_font_weight }};
+  }
+  
+  @media (max-width: 768px) {
+    #pt-simple-hero-{{ section.id }} .pt-collection-name {
+      font-size: {{ section.settings.collection_font_size_mobile }}px;
+    }
+    
+    #pt-simple-hero-{{ section.id }} .pt-hero-tagline {
+      font-size: {{ section.settings.tagline_font_size_mobile }}px;
+    }
+  }
+</style>
+
+<section class="pt-simple-hero" id="pt-simple-hero-{{ section.id }}">
+  <div class="pt-hero-background-image">
+    {% if section.settings.hero_image %}
+      {{ section.settings.hero_image | image_url: width: 2400 | image_tag: loading: 'eager', class: 'pt-hero-img' }}
+    {% else %}
+      <div class="pt-hero-placeholder">Hero Image</div>
+    {% endif %}
+  </div>
+  
+  <div class="pt-hero-overlay"></div>
+  
+  <div class="pt-hero-content">
+    {% if section.settings.collection_name != blank %}
+      <h1 class="pt-collection-name">{{ section.settings.collection_name }}</h1>
+    {% endif %}
+    
+    {% if section.settings.tagline != blank %}
+      <p class="pt-hero-tagline">{{ section.settings.tagline }}</p>
+    {% endif %}
+    
+    {% if section.settings.button_text != blank %}
+      <a href="{{ section.settings.button_link }}" class="pt-hero-button">
+        {{ section.settings.button_text }}
+      </a>
+    {% endif %}
+  </div>
+  
+  <!-- Scroll Down Indicator -->
+  <div class="pt-scroll-indicator" onclick="scrollToProducts()">
+    <div class="pt-scroll-circle">
+      <svg class="pt-scroll-text" viewBox="0 0 200 200">
+        <defs>
+          <path id="circlePath" d="M 100, 100 m -75, 0 a 75,75 0 1,1 150,0 a 75,75 0 1,1 -150,0"/>
+        </defs>
+        <text class="pt-circle-text">
+          <textPath href="#circlePath" startOffset="0%">
+            Scroll Down • Scroll Down • Scroll Down •
+          </textPath>
+        </text>
+      </svg>
+      <div class="pt-scroll-arrow">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="12" y1="5" x2="12" y2="19"></line>
+          <polyline points="19 12 12 19 5 12"></polyline>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function scrollToProducts() {
+    const productSection = document.querySelector('.pt-product-showcase');
+    if (productSection) {
+      productSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  }
+</script>
+
+{% schema %}
+{
+  "name": "PT Simple Hero",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Hero Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero Image"
+    },
+    {
+      "type": "range",
+      "id": "image_scale",
+      "min": 50,
+      "max": 150,
+      "step": 5,
+      "unit": "%",
+      "label": "Image Scale",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "hero_height",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "vh",
+      "label": "Hero Height",
+      "default": 100
+    },
+    {
+      "type": "header",
+      "content": "Collection Name"
+    },
+    {
+      "type": "text",
+      "id": "collection_name",
+      "label": "Collection Name",
+      "default": "AURA COLLECTION SS26"
+    },
+    {
+      "type": "select",
+      "id": "collection_font",
+      "label": "Font Family",
+      "options": [
+        {
+          "value": "Ubuntu",
+          "label": "Ubuntu"
+        },
+        {
+          "value": "Helvetica Neue",
+          "label": "Helvetica Neue"
+        },
+        {
+          "value": "Helvetica",
+          "label": "Helvetica"
+        },
+        {
+          "value": "Arial",
+          "label": "Arial"
+        },
+        {
+          "value": "Arial Black",
+          "label": "Arial Black"
+        },
+        {
+          "value": "Verdana",
+          "label": "Verdana"
+        },
+        {
+          "value": "Tahoma",
+          "label": "Tahoma"
+        },
+        {
+          "value": "Trebuchet MS",
+          "label": "Trebuchet MS"
+        },
+        {
+          "value": "Impact",
+          "label": "Impact"
+        },
+        {
+          "value": "Georgia",
+          "label": "Georgia"
+        },
+        {
+          "value": "Palatino",
+          "label": "Palatino"
+        },
+        {
+          "value": "Times New Roman",
+          "label": "Times New Roman"
+        },
+        {
+          "value": "Courier New",
+          "label": "Courier New"
+        },
+        {
+          "value": "Lucida Console",
+          "label": "Lucida Console"
+        },
+        {
+          "value": "Monaco",
+          "label": "Monaco"
+        }
+      ],
+      "default": "Ubuntu"
+    },
+    {
+      "type": "range",
+      "id": "collection_font_weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "label": "Font Weight",
+      "default": 700,
+      "info": "100=Thin, 400=Normal, 700=Bold, 900=Black"
+    },
+    {
+      "type": "range",
+      "id": "collection_font_size",
+      "min": 30,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Font Size (Desktop)",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "collection_font_size_mobile",
+      "min": 20,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Font Size (Mobile)",
+      "default": 48
+    },
+    {
+      "type": "header",
+      "content": "Tagline"
+    },
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Tagline",
+      "default": "Built different"
+    },
+    {
+      "type": "select",
+      "id": "tagline_font",
+      "label": "Font Family",
+      "options": [
+        {
+          "value": "Ubuntu",
+          "label": "Ubuntu"
+        },
+        {
+          "value": "Helvetica Neue",
+          "label": "Helvetica Neue"
+        },
+        {
+          "value": "Helvetica",
+          "label": "Helvetica"
+        },
+        {
+          "value": "Arial",
+          "label": "Arial"
+        },
+        {
+          "value": "Arial Black",
+          "label": "Arial Black"
+        },
+        {
+          "value": "Verdana",
+          "label": "Verdana"
+        },
+        {
+          "value": "Tahoma",
+          "label": "Tahoma"
+        },
+        {
+          "value": "Trebuchet MS",
+          "label": "Trebuchet MS"
+        },
+        {
+          "value": "Impact",
+          "label": "Impact"
+        },
+        {
+          "value": "Georgia",
+          "label": "Georgia"
+        },
+        {
+          "value": "Palatino",
+          "label": "Palatino"
+        },
+        {
+          "value": "Times New Roman",
+          "label": "Times New Roman"
+        },
+        {
+          "value": "Courier New",
+          "label": "Courier New"
+        },
+        {
+          "value": "Lucida Console",
+          "label": "Lucida Console"
+        },
+        {
+          "value": "Monaco",
+          "label": "Monaco"
+        }
+      ],
+      "default": "Ubuntu"
+    },
+    {
+      "type": "range",
+      "id": "tagline_font_weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "label": "Font Weight",
+      "default": 300,
+      "info": "100=Thin, 400=Normal, 700=Bold, 900=Black"
+    },
+    {
+      "type": "range",
+      "id": "tagline_font_size",
+      "min": 12,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Font Size (Desktop)",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "tagline_font_size_mobile",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Font Size (Mobile)",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "SHOP NOW"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link",
+      "default": "/collections/all"
+    }
+  ],
+  "presets": [
+    {
+      "name": "PT Simple Hero"
+    }
+  ]
+}
+{% endschema %}

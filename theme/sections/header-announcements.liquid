@@ -8,10 +8,12 @@
   ></script>
 {% endif %}
 
-<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+{% unless section.settings.transparent_background %}
+  <div class="section-background color-{{ section.settings.color_scheme }}"></div>
+{% endunless %}
 <aside
-  class="announcement-bar spacing-style section section--{{ section.settings.section_width }} color-{{ section.settings.color_scheme }}"
-  style="{% render 'spacing-padding', settings: section.settings %}; --border-bottom-width: {{ section.settings.divider_width }}px;"
+  class="announcement-bar spacing-style section section--{{ section.settings.section_width }} {% unless section.settings.transparent_background %}color-{{ section.settings.color_scheme }}{% endunless %}"
+  style="{% render 'spacing-padding', settings: section.settings %}; --border-bottom-width: {{ section.settings.divider_width }}px;{% if section.settings.transparent_background %} background: transparent !important; color: white !important;{% endif %}"
 >
   {% liquid
     assign autoplay = false
@@ -42,6 +44,21 @@
   .announcement-bar {
     border-block-end: var(--border-bottom-width) solid var(--color-border);
   }
+  
+  {% if section.settings.transparent_background %}
+  .announcement-bar,
+  .announcement-bar * {
+    color: white !important;
+  }
+  
+  .announcement-bar .slideshow-control {
+    color: white !important;
+  }
+  
+  .announcement-bar .slideshow-control svg {
+    fill: white !important;
+  }
+  {% endif %}
 
   .announcement-bar__slider {
     display: flex;
@@ -169,6 +186,13 @@
       "id": "color_scheme",
       "default": "scheme-4",
       "label": "t:settings.color_scheme"
+    },
+    {
+      "type": "checkbox",
+      "id": "transparent_background",
+      "label": "Transparent Background",
+      "default": false,
+      "info": "Makes the announcement bar background transparent (works best on homepage with hero banner)"
     },
     {
       "type": "range",

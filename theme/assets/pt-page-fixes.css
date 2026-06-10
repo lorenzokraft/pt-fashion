@@ -1,0 +1,168 @@
+/* Page-wide overflow and alignment fixes */
+
+/* Prevent horizontal scroll on all pages */
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
+  position: relative;
+}
+
+/* Ensure all main containers respect viewport width */
+body > * {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* Fix for Shopify sections causing overflow */
+.shopify-section {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* Ensure page-width containers don't overflow */
+.page-width,
+[class*="page-width"] {
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+/* Fix grid layouts that might overflow */
+.grid,
+[class*="grid"],
+.product-grid,
+[class*="product-grid"] {
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+/* Ensure images don't cause overflow */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Fix for collection list grids */
+.collection-list,
+[class*="collection-list"] {
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+/* Ensure all containers use border-box sizing */
+* {
+  box-sizing: border-box;
+}
+
+/* Mobile specific fixes */
+@media (max-width: 1024px) {
+  body {
+    overflow-x: hidden !important;
+  }
+  
+  .shopify-section {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  
+  /* Ensure grids don't overflow on mobile */
+  .grid,
+  [class*="grid"] {
+    width: 100%;
+    max-width: 100vw;
+  }
+}
+
+/* Prevent specific sections from overflowing */
+#shopify-section-template--23281436500289__product_list_fa6P9H {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* Fix collection grid scroll behavior and image sizing */
+.collection-list,
+[class*="collection-list"],
+.product-list,
+[class*="product-list"] {
+  overflow: visible !important;
+  -webkit-overflow-scrolling: auto !important;
+}
+
+/* Prevent touch scroll on collection grids */
+.collection-list__grid,
+[class*="collection-list__grid"],
+.product-grid,
+[class*="product-grid"] {
+  overflow: visible !important;
+  touch-action: pan-y !important;
+  -webkit-overflow-scrolling: auto !important;
+}
+
+/* Fix collection card images to be portrait/taller */
+.card__media,
+.card__inner,
+.media,
+[class*="card__media"],
+[class*="product-card"] .media,
+.collection-card .media {
+  aspect-ratio: 3/4 !important;
+  min-height: 400px !important;
+  height: auto !important;
+}
+
+/* Ensure images fill container properly */
+.card__media img,
+.media img,
+[class*="card__media"] img,
+[class*="product-card"] img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+}
+
+/* Fix 4-column grid layout - prevent shrinking */
+.grid--4-col-desktop .grid__item,
+[class*="grid--4"] .grid__item {
+  flex: 0 0 calc(25% - 12px) !important;
+  max-width: calc(25% - 12px) !important;
+  min-width: calc(25% - 12px) !important;
+}
+
+.grid--3-col-desktop .grid__item,
+[class*="grid--3"] .grid__item {
+  flex: 0 0 calc(33.333% - 12px) !important;
+  max-width: calc(33.333% - 12px) !important;
+  min-width: calc(33.333% - 12px) !important;
+}
+
+/* Mobile grid fixes */
+@media (max-width: 1024px) {
+  .card__media,
+  .card__inner,
+  .media,
+  [class*="card__media"] {
+    aspect-ratio: 3/4 !important;
+    min-height: 300px !important;
+  }
+  
+  /* Fix 2-column mobile grid */
+  .grid--2-col-tablet .grid__item,
+  [class*="mobile-columns--2"] .grid__item {
+    flex: 0 0 calc(50% - 8px) !important;
+    max-width: calc(50% - 8px) !important;
+    min-width: calc(50% - 8px) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .card__media,
+  .card__inner,
+  .media,
+  [class*="card__media"] {
+    min-height: 250px !important;
+  }
+}

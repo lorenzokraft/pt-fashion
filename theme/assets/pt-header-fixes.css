@@ -1,0 +1,108 @@
+/* === PT Header Transparent Fixes ===
+ * The theme's native transparent header handles positioning when
+ * "Transparent background" is ON in Shopify admin (Home page header settings).
+ */
+
+/* Remove any top gap from html/body */
+html, body {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Make announcement bar transparent */
+#header-group,
+#header-group .shopify-section-group-header-group,
+header-announcements-component,
+header-announcements-component .announcement-bar,
+header-announcements-component .section-background,
+aside.announcement-bar,
+aside.announcement-bar .section-background {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* Force header group to float at top of viewport */
+#header-group {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 1000 !important;
+  width: 100% !important;
+}
+
+/* Boost header component z-index */
+header-component,
+header-component.header,
+.header,
+.header__row {
+  position: relative !important;
+  z-index: 1001 !important;
+}
+
+/* Make header and all its rows transparent */
+.header,
+.header__row,
+.header__columns,
+.header__wrapper,
+.header__row:hover,
+.header__row:focus-within,
+.header__underlay-closed,
+.header__underlay-open {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* White text/icons for announcement bar */
+header-announcements-component,
+header-announcements-component * {
+  color: white !important;
+  --color-foreground: 255, 255, 255 !important;
+}
+
+/* White text/icons for header - always, including hover states */
+.header,
+.header *,
+.header__row,
+.header__row *,
+header-menu,
+header-menu * {
+  --color-foreground: white !important;
+  --color-foreground-rgb: 255, 255, 255 !important;
+  color: white !important;
+}
+
+/* Specifically target menu links and items */
+.menu-list__link,
+.header__menu-item,
+.header__menu-item a,
+.header__menu-item summary,
+.header__menu-item span,
+header-component .menu-list__link,
+header-component a,
+header-component summary {
+  color: white !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* White SVG icons */
+.header__icon svg,
+.header__icon path,
+.header__icon svg * {
+  fill: white !important;
+  stroke: white !important;
+  color: white !important;
+}
+
+/* Keep mega menu with normal white background when open */
+.mega-menu,
+details.header__menu-item[open] .mega-menu {
+  background: white !important;
+  color: #1a1a1a !important;
+}
+
+.mega-menu *,
+details.header__menu-item[open] .mega-menu * {
+  color: #1a1a1a !important;
+}

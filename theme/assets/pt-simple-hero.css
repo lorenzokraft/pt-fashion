@@ -1,0 +1,229 @@
+.pt-simple-hero {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.pt-hero-background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.pt-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.pt-hero-placeholder {
+  width: 100%;
+  height: 100%;
+  background: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #666;
+}
+
+.pt-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 2;
+}
+
+.pt-hero-content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  color: white;
+  padding: 0 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.pt-collection-name {
+  font-family: 'Ubuntu', sans-serif;
+  font-size: clamp(48px, 8vw, 120px);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin: 0 0 20px 0;
+  line-height: 1.1;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.pt-hero-tagline {
+  font-family: 'Ubuntu', sans-serif;
+  font-size: clamp(16px, 2vw, 24px);
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  margin: 0 0 40px 0;
+  opacity: 0.95;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.pt-hero-button {
+  display: inline-block;
+  padding: 16px 48px;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  color: white;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+  backdrop-filter: blur(10px);
+}
+
+.pt-hero-button:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Scroll Down Indicator */
+.pt-scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  cursor: pointer;
+}
+
+.pt-scroll-circle {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pt-scroll-text {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  animation: rotate 15s linear infinite;
+}
+
+.pt-circle-text {
+  fill: white;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.pt-scroll-arrow {
+  position: relative;
+  z-index: 2;
+  color: white;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.pt-scroll-arrow svg {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .pt-simple-hero {
+    min-height: 500px;
+    height: 80vh;
+  }
+  
+  .pt-collection-name {
+    font-size: clamp(32px, 10vw, 60px);
+    margin-bottom: 16px;
+  }
+  
+  .pt-hero-tagline {
+    font-size: clamp(14px, 3vw, 18px);
+    margin-bottom: 30px;
+  }
+  
+  .pt-hero-button {
+    padding: 14px 40px;
+    font-size: 13px;
+  }
+  
+  .pt-scroll-indicator {
+    bottom: 30px;
+  }
+  
+  .pt-scroll-circle {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .pt-circle-text {
+    font-size: 16px;
+    letter-spacing: 2px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pt-simple-hero {
+    min-height: 450px;
+    height: 70vh;
+  }
+  
+  .pt-collection-name {
+    font-size: clamp(28px, 9vw, 48px);
+  }
+  
+  .pt-hero-tagline {
+    font-size: clamp(12px, 3vw, 16px);
+  }
+  
+  .pt-scroll-circle {
+    width: 110px;
+    height: 110px;
+  }
+  
+  .pt-circle-text {
+    font-size: 14px;
+    letter-spacing: 1.5px;
+  }
+}

@@ -31,6 +31,8 @@
     {%- render 'scripts' -%}
     {%- render 'theme-styles-variables' -%}
     {%- render 'color-schemes' -%}
+    {{ 'pt-header-fixes.css' | asset_url | stylesheet_tag }}
+    {{ 'pt-page-fixes.css' | asset_url | stylesheet_tag }}
 
     {% if request.design_mode %}
       {%- render 'theme-editor' -%}
