@@ -1,0 +1,477 @@
+/* PT Cart Page Redesign - Boutique Style */
+
+/* ===== Page background ===== */
+.shopify-section:has(.cart-page) .section-background,
+.shopify-section:has(.cart-page) .section {
+  background: #faf7f3 !important;
+}
+
+/* ===== Layout: force single column, summary below items ===== */
+.cart-page {
+  display: block !important;
+  max-width: 680px !important;
+  margin: 0 auto !important;
+  padding: 32px 20px 60px !important;
+  width: 100% !important;
+}
+
+.cart-page__main {
+  display: block !important;
+}
+
+.cart-page__summary {
+  display: block !important;
+  height: auto !important;
+  padding-top: 0 !important;
+  margin-top: 8px !important;
+}
+
+/* ===== Cart Title: "CART (n)" style ===== */
+.cart-title {
+  display: flex !important;
+  align-items: baseline !important;
+  gap: 10px !important;
+  font-size: clamp(30px, 5vw, 40px) !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  color: #1a1a1a !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 20px !important;
+  border-bottom: 1px solid #e3ddd4 !important;
+}
+
+.cart-title .cart-bubble,
+.cart-title [class*="bubble"] {
+  font-style: italic !important;
+  font-weight: 400 !important;
+  font-size: 0.6em !important;
+  background: transparent !important;
+  color: #1a1a1a !important;
+}
+
+/* ===== Items list ===== */
+.cart-page__items {
+  margin-top: 8px !important;
+}
+
+.cart-items__table,
+.cart-items__table tbody {
+  display: block !important;
+  width: 100% !important;
+}
+
+/* ===== Item row: image left, details right ===== */
+.cart-items__table-row {
+  position: relative !important;
+  display: grid !important;
+  grid-template-columns: minmax(140px, 200px) 1fr !important;
+  grid-template-areas:
+    'media details'
+    'media quantity'
+    'media price' !important;
+  align-items: start !important;
+  column-gap: 24px !important;
+  row-gap: 0 !important;
+  padding: 28px 0 !important;
+  border-bottom: 1px solid #e3ddd4 !important;
+  margin-bottom: 0 !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.cart-items__table-row:last-child {
+  border-bottom: none !important;
+}
+
+/* Product image - tall portrait on white */
+.cart-items__media {
+  grid-area: media !important;
+  display: block !important;
+  width: 100% !important;
+}
+
+.cart-items__media-container {
+  display: block !important;
+  width: 100% !important;
+  aspect-ratio: 3/4 !important;
+  background: #ffffff !important;
+  overflow: hidden !important;
+}
+
+.cart-items__media-image {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  border: none !important;
+  border-radius: 0 !important;
+}
+
+/* ===== Details ===== */
+.cart-items__details {
+  grid-area: details !important;
+  display: block !important;
+  padding: 0 !important;
+}
+
+.cart-items__title {
+  font-size: 17px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  line-height: 1.4 !important;
+  color: #1a1a1a !important;
+  text-decoration: none !important;
+}
+
+/* Variant values as pills with label */
+.cart-items__variants-wrapper {
+  margin-top: 14px !important;
+}
+
+.cart-items__variants {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  margin: 0 !important;
+}
+
+.cart-items__variant dd {
+  display: inline-flex !important;
+  align-items: center !important;
+  margin: 0 !important;
+  padding: 4px 16px !important;
+  border: 1px solid #c9c2b8 !important;
+  border-radius: 50px !important;
+  font-size: 12px !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  color: #1a1a1a !important;
+}
+
+/* Hide the small per-item price inside details (we show line total big) */
+.cart-items__unit-price-wrapper {
+  display: none !important;
+}
+
+/* ===== Quantity area ===== */
+.cart-items__quantity {
+  grid-area: quantity !important;
+  display: block !important;
+  padding: 0 !important;
+  margin-top: 18px !important;
+}
+
+.cart-items__quantity-controls {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 8px !important;
+}
+
+.cart-items__quantity-controls::before {
+  content: 'Quantity:' !important;
+  font-size: 12px !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  color: #8a8378 !important;
+}
+
+/* Pill quantity selector */
+.cart-items__quantity .quantity-selector {
+  display: inline-flex !important;
+  align-items: center !important;
+  border: 1px solid #c9c2b8 !important;
+  border-radius: 50px !important;
+  background: transparent !important;
+  overflow: hidden !important;
+}
+
+.cart-items__quantity .quantity-minus,
+.cart-items__quantity .quantity-plus {
+  width: 38px !important;
+  height: 36px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: transparent !important;
+  border: none !important;
+  color: #1a1a1a !important;
+  cursor: pointer !important;
+}
+
+.cart-items__quantity .quantity-selector input {
+  width: 32px !important;
+  height: 36px !important;
+  text-align: center !important;
+  border: none !important;
+  background: transparent !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  color: #1a1a1a !important;
+}
+
+/* Remove button: X at top right of row */
+.cart-items__remove {
+  position: absolute !important;
+  top: 28px !important;
+  right: 0 !important;
+  width: 32px !important;
+  height: 32px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: transparent !important;
+  border: none !important;
+  color: #8a8378 !important;
+  cursor: pointer !important;
+  padding: 0 !important;
+  transition: color 0.2s ease !important;
+}
+
+.cart-items__remove:hover {
+  color: #1a1a1a !important;
+}
+
+.cart-items__remove svg {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+/* ===== Line price: large below quantity ===== */
+.cart-items__price {
+  grid-area: price !important;
+  display: block !important;
+  padding: 0 !important;
+  margin-top: 18px !important;
+  font-size: 26px !important;
+  font-weight: 600 !important;
+  color: #1a1a1a !important;
+  text-align: left !important;
+}
+
+.cart-items__error {
+  grid-column: 1 / -1 !important;
+}
+
+/* ===== Summary: TOTAL + buttons ===== */
+.cart-page__summary .cart-summary,
+.cart-page__summary > * {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+/* Discount / note accordions kept subtle */
+.cart-actions {
+  border-block: 1px solid #e3ddd4 !important;
+  margin-top: 24px !important;
+}
+
+.cart-discount__label,
+.cart-note__label {
+  font-size: 13px !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  color: #1a1a1a !important;
+}
+
+/* TOTAL row */
+.cart-totals__container {
+  padding: 24px 0 8px !important;
+}
+
+.cart-totals__total {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+
+.cart-totals__total-label {
+  font-size: 22px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  color: #1a1a1a !important;
+}
+
+.cart-totals__total-value {
+  font-size: 26px !important;
+  font-weight: 600 !important;
+  color: #1a1a1a !important;
+}
+
+.cart-totals__tax-note {
+  font-size: 12px !important;
+  color: #8a8378 !important;
+  margin-top: 6px !important;
+}
+
+/* ===== Checkout button: dark rounded pill ===== */
+.cart__ctas {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+  margin-top: 20px !important;
+}
+
+.cart__checkout-button {
+  display: block !important;
+  width: 100% !important;
+  padding: 18px 32px !important;
+  background: #241c14 !important;
+  color: #ffffff !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  text-align: center !important;
+  border: none !important;
+  border-radius: 50px !important;
+  cursor: pointer !important;
+  transition: background 0.2s ease !important;
+}
+
+.cart__checkout-button:hover {
+  background: #3a3026 !important;
+}
+
+/* ===== Continue shopping: outlined pill ===== */
+.cart__continue-shopping {
+  display: block !important;
+  width: 100% !important;
+  padding: 16px 32px !important;
+  background: transparent !important;
+  color: #241c14 !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  text-align: center !important;
+  border: 1px solid #241c14 !important;
+  border-radius: 50px !important;
+  text-decoration: none !important;
+  transition: background 0.2s ease, color 0.2s ease !important;
+}
+
+.cart__continue-shopping:hover {
+  background: #241c14 !important;
+  color: #ffffff !important;
+}
+
+/* ===== Empty cart ===== */
+.cart-page--empty {
+  text-align: center !important;
+  min-height: 40vh !important;
+}
+
+/* ===== Mobile adjustments ===== */
+@media (max-width: 549px) {
+  .cart-page {
+    padding: 20px 12px 48px !important;
+    max-width: 100% !important;
+  }
+
+  .cart-title {
+    font-size: 24px !important;
+    padding-bottom: 16px !important;
+  }
+
+  .cart-items__table-row {
+    grid-template-columns: 110px 1fr !important;
+    column-gap: 14px !important;
+    padding: 20px 0 !important;
+  }
+
+  .cart-items__title {
+    font-size: 13px !important;
+    padding-right: 28px !important;
+    letter-spacing: 0.04em !important;
+  }
+
+  .cart-items__variant dd {
+    font-size: 11px !important;
+    padding: 3px 12px !important;
+  }
+
+  .cart-items__quantity {
+    margin-top: 12px !important;
+  }
+
+  .cart-items__quantity-controls::before {
+    font-size: 11px !important;
+  }
+
+  .cart-items__quantity .quantity-minus,
+  .cart-items__quantity .quantity-plus {
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  .cart-items__quantity .quantity-selector input {
+    width: 28px !important;
+    height: 32px !important;
+    font-size: 13px !important;
+  }
+
+  .cart-items__price {
+    font-size: 20px !important;
+    margin-top: 12px !important;
+  }
+
+  .cart-items__remove {
+    top: 20px !important;
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  .cart-items__remove svg {
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  /* Summary mobile */
+  .cart-totals__container {
+    padding: 20px 0 8px !important;
+  }
+
+  .cart-totals__total {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 6px !important;
+  }
+
+  .cart-totals__total-label {
+    font-size: 16px !important;
+  }
+
+  .cart-totals__total-value {
+    font-size: 24px !important;
+  }
+
+  .cart-totals__tax-note {
+    font-size: 11px !important;
+    margin-top: 8px !important;
+  }
+
+  .cart__ctas {
+    margin-top: 16px !important;
+  }
+
+  .cart__checkout-button {
+    padding: 16px 28px !important;
+    font-size: 13px !important;
+  }
+
+  .cart__continue-shopping {
+    padding: 14px 28px !important;
+    font-size: 13px !important;
+  }
+
+  .cart-discount__label,
+  .cart-note__label {
+    font-size: 12px !important;
+  }
+}

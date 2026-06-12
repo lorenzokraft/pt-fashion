@@ -1,4 +1,6 @@
-
+{{ 'pt-account-drawer-fixes.css' | asset_url | stylesheet_tag }}
+{{ 'pt-quick-add-disable.css' | asset_url | stylesheet_tag }}
+{{ 'pt-cart-page-header-fixes.css' | asset_url | stylesheet_tag }}
 
 {% liquid
   assign order = 'logo,menu,localization,search,drawer_search,actions'
@@ -57,9 +59,17 @@
     content_for 'block', type: '_header-menu', id: 'header-menu'
   endcapture
 
+  if section.settings.hide_primary_menu
+    assign menu = ''
+  endif
+
   capture drawer_menu
     content_for 'block', type: '_header-menu', id: 'header-menu', variant: 'mobile'
   endcapture
+
+  if section.settings.show_hamburger_menu
+    assign drawer_menu = ''
+  endif
 
   capture navigation_bar
     content_for 'block', type: '_header-menu', id: 'header-menu', variant: 'navigation_bar', transparent: transparent
@@ -401,6 +411,10 @@
     </div>
   {% endif %}
 </header-component>
+
+{% if section.settings.show_hamburger_menu %}
+  {% render 'pt-hamburger-menu', menu: section.settings.hamburger_menu, settings: section.settings %}
+{% endif %}
 
 <script
   src="{{ 'header.js' | asset_url }}"
@@ -1130,6 +1144,43 @@
   "tag": "header",
   "class": "header-section",
   "settings": [
+    {
+      "type": "header",
+      "content": "Custom Menu Options"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_primary_menu",
+      "label": "Hide primary menu",
+      "info": "Hides the inline menu links while keeping the logo",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_hamburger_menu",
+      "label": "Show hamburger menu",
+      "info": "Shows a hamburger icon at the top left that opens a slide-out menu",
+      "default": false
+    },
+    {
+      "type": "link_list",
+      "id": "hamburger_menu",
+      "label": "Hamburger menu",
+      "default": "main-menu",
+      "visible_if": "{{ section.settings.show_hamburger_menu }}"
+    },
+    {
+      "type": "range",
+      "id": "hamburger_mobile_padding_top",
+      "label": "Mobile padding top",
+      "info": "Padding above hamburger menu on mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 14,
+      "visible_if": "{{ section.settings.show_hamburger_menu }}"
+    },
     {
       "type": "header",
       "content": "t:content.logo"

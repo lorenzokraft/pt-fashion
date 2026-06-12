@@ -1,0 +1,18 @@
+/* Disable Quick Add Modal/Popup */
+
+quick-add-modal,
+.quick-add-modal,
+[data-quick-add-modal],
+dialog[id*="quick-add"],
+dialog[id*="QuickAdd"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Ensure cart icon always navigates to cart page */
+cart-icon a,
+.cart-icon a {
+  pointer-events: all !important;
+}

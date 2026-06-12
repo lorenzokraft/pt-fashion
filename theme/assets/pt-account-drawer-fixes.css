@@ -1,0 +1,94 @@
+/* PT Account Drawer Fixes - Fix white text on white background */
+
+/* Account drawer/popover styling */
+shopify-account {
+  color: #1a1a1a !important;
+}
+
+shopify-account * {
+  color: #1a1a1a !important;
+}
+
+/* Email input field */
+shopify-account input[type="email"],
+shopify-account input[type="text"],
+shopify-account input[type="password"] {
+  background: #ffffff !important;
+  border: 1px solid #1a1a1a !important;
+  color: #1a1a1a !important;
+  padding: 12px 16px !important;
+  border-radius: 6px !important;
+  font-size: 14px !important;
+  width: 100% !important;
+}
+
+shopify-account input::placeholder {
+  color: #999 !important;
+}
+
+/* Buttons */
+shopify-account button,
+shopify-account [type="submit"] {
+  background: #1a1a1a !important;
+  color: #ffffff !important;
+  border: 1px solid #1a1a1a !important;
+  padding: 12px 24px !important;
+  border-radius: 6px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: background 0.2s ease !important;
+}
+
+shopify-account button:hover,
+shopify-account [type="submit"]:hover {
+  background: #333 !important;
+}
+
+/* Links */
+shopify-account a {
+  color: #1a1a1a !important;
+  text-decoration: underline !important;
+}
+
+shopify-account a:hover {
+  color: #666 !important;
+}
+
+/* Checkbox */
+shopify-account input[type="checkbox"] {
+  accent-color: #1a1a1a !important;
+  width: 18px !important;
+  height: 18px !important;
+}
+
+/* Labels */
+shopify-account label {
+  color: #1a1a1a !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+
+/* Headings */
+shopify-account h1,
+shopify-account h2,
+shopify-account h3,
+shopify-account h4,
+shopify-account h5,
+shopify-account h6 {
+  color: #1a1a1a !important;
+}
+
+/* Account popover/drawer container */
+.account-button {
+  color: inherit !important;
+}
+
+/* Ensure popover has proper background */
+shopify-account::part(popover),
+shopify-account::part(dialog) {
+  background: #ffffff !important;
+  border: 1px solid #1a1a1a !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+}

@@ -128,10 +128,73 @@
         {
           "value": "var(--font-accent--family)",
           "label": "t:options.accent"
+        },
+        {
+          "value": "Georgia, serif",
+          "label": "Georgia (Serif)"
+        },
+        {
+          "value": "system-ui, sans-serif",
+          "label": "System (Sans-serif)"
+        },
+        {
+          "value": "Helvetica, Arial, sans-serif",
+          "label": "Helvetica"
+        },
+        {
+          "value": "Courier, monospace",
+          "label": "Courier (Monospace)"
         }
       ],
-      "default": "var(--font-body--family)",
-      "visible_if": "{{ block.settings.type_preset == 'custom' }}"
+      "default": "var(--font-body--family)"
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "Font Weight",
+      "options": [
+        {
+          "value": "",
+          "label": "Default"
+        },
+        {
+          "value": "100",
+          "label": "Thin (100)"
+        },
+        {
+          "value": "200",
+          "label": "Extra Light (200)"
+        },
+        {
+          "value": "300",
+          "label": "Light (300)"
+        },
+        {
+          "value": "400",
+          "label": "Normal (400)"
+        },
+        {
+          "value": "500",
+          "label": "Medium (500)"
+        },
+        {
+          "value": "600",
+          "label": "Semi Bold (600)"
+        },
+        {
+          "value": "700",
+          "label": "Bold (700)"
+        },
+        {
+          "value": "800",
+          "label": "Extra Bold (800)"
+        },
+        {
+          "value": "900",
+          "label": "Black (900)"
+        }
+      ],
+      "default": ""
     },
     {
       "type": "select",
@@ -207,8 +270,7 @@
           "label": "184px"
         }
       ],
-      "default": "1rem",
-      "visible_if": "{{ block.settings.type_preset == 'custom' }}"
+      "default": "1rem"
     },
     {
       "type": "select",

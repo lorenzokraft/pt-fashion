@@ -1,0 +1,100 @@
+/* PT Collection Card Custom Styling */
+
+/* Center align content and position at bottom */
+.collection-card--image-bg .collection-card__content {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-end !important;
+  align-items: center !important;
+  text-align: center !important;
+  width: 100% !important;
+}
+
+/* Style collection title */
+.collection-card--image-bg .collection-card__content .collection-title {
+  text-align: center !important;
+  width: 100% !important;
+}
+
+/* Style collection title labels as transparent buttons */
+.collection-card .text-block--background {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 2px solid #ffffff !important;
+  color: #fff !important;
+  font-family: Ubuntu, sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.15em !important;
+  text-transform: uppercase !important;
+  transition: all 0.3s ease !important;
+  border-radius: 4px !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  backdrop-filter: blur(10px) !important;
+  padding: 14px 40px !important;
+}
+
+.collection-card .text-block--background p {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  color: #fff !important;
+  font-family: Ubuntu, sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.15em !important;
+  text-transform: uppercase !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Solid on hover */
+.collection-card .text-block--background:hover {
+  background: rgba(255, 255, 255, 0.95) !important;
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  color: #1a1a1a !important;
+}
+
+.collection-card .text-block--background:hover p {
+  color: #1a1a1a !important;
+}
+
+/* Ensure button text is visible */
+.collection-card--image-bg .button *,
+.collection-card--image-bg .button-secondary * {
+  color: inherit !important;
+}
+
+/* Add subtle overlay to collection cards for better text readability */
+.collection-card--image-bg::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Ensure content is above overlay */
+.collection-card--image-bg .collection-card__content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  /* Smaller button text and padding for mobile - single line */
+  .collection-card .text-block--background {
+    padding: 10px 20px !important;
+    font-size: 10px !important;
+    letter-spacing: 0.1em !important;
+  }
+  
+  .collection-card .text-block--background p {
+    font-size: 10px !important;
+    letter-spacing: 0.1em !important;
+  }
+}

@@ -1,0 +1,631 @@
+/* PT Footer Custom Styling - Clean minimal design matching reference */
+
+/* Footer background and spacing */
+.footer,
+.section-wrapper .footer,
+section.footer {
+  background: #ffffff !important;
+  padding: 80px 0 40px !important;
+  margin-top: 100px !important;
+}
+
+.footer .section-background,
+.section-wrapper .section-background {
+  background: #ffffff !important;
+}
+
+/* Override any color scheme backgrounds in footer */
+.section-wrapper.footer,
+.section-wrapper .footer,
+.footer.section {
+  background-color: #ffffff !important;
+}
+
+/* ===== Newsletter Section (Top) ===== */
+.pt-footer-newsletter {
+  text-align: center !important;
+  max-width: 700px !important;
+  margin: 0 auto 80px !important;
+  padding: 0 24px !important;
+  animation: fadeInUp 0.8s ease-out !important;
+}
+
+.pt-footer-newsletter__title,
+.footer .pt-footer-newsletter__title,
+.section .pt-footer-newsletter__title {
+  font-size: clamp(36px, 5vw, 52px) !important;
+  font-weight: 400 !important;
+  color: #4a4a4a !important;
+  margin: 0 0 12px !important;
+  letter-spacing: -0.02em !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif !important;
+  line-height: 1.2 !important;
+}
+
+.pt-footer-newsletter__subtitle {
+  font-size: 14px !important;
+  color: #999 !important;
+  margin: 0 0 32px !important;
+  line-height: 1.6 !important;
+  font-weight: 300 !important;
+}
+
+.pt-footer-newsletter__form {
+  max-width: 550px !important;
+  margin: 0 auto !important;
+}
+
+.pt-footer-newsletter__input-wrapper {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.pt-footer-newsletter__input {
+  width: 100% !important;
+  padding: 16px 60px 16px 24px !important;
+  border: 1px solid #d0d0d0 !important;
+  border-radius: 50px !important;
+  font-size: 14px !important;
+  color: #1a1a1a !important;
+  background: #fafafa !important;
+  transition: all 0.4s cubic-bezier(0.33, 1, 0.68, 1) !important;
+  outline: none !important;
+}
+
+.pt-footer-newsletter__input:focus {
+  border-color: #1a1a1a !important;
+  background: #ffffff !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+}
+
+.pt-footer-newsletter__input::placeholder {
+  color: #aaa !important;
+}
+
+.pt-footer-newsletter__submit {
+  position: absolute !important;
+  right: 6px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 50% !important;
+  background: transparent !important;
+  border: none !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #1a1a1a !important;
+  transition: all 0.4s cubic-bezier(0.33, 1, 0.68, 1) !important;
+}
+
+.pt-footer-newsletter__submit:hover {
+  background: #1a1a1a !important;
+  color: #ffffff !important;
+  transform: translateY(-50%) scale(1.1) !important;
+}
+
+.pt-footer-newsletter__submit svg {
+  transition: transform 0.4s cubic-bezier(0.33, 1, 0.68, 1) !important;
+}
+
+.pt-footer-newsletter__submit:hover svg {
+  transform: translateX(3px) !important;
+}
+
+/* ===== 4 Column Footer Layout ===== */
+.pt-footer-columns {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 60px !important;
+  max-width: 1200px !important;
+  margin: 0 auto 80px !important;
+  padding: 0 40px !important;
+  animation: fadeInUp 0.8s ease-out 0.2s backwards !important;
+}
+
+.pt-footer-block {
+  animation: fadeInUp 0.6s ease-out backwards !important;
+}
+
+.pt-footer-block:nth-child(1) { animation-delay: 0.3s !important; }
+.pt-footer-block:nth-child(2) { animation-delay: 0.4s !important; }
+.pt-footer-block:nth-child(3) { animation-delay: 0.5s !important; }
+.pt-footer-block:nth-child(4) { animation-delay: 0.6s !important; }
+
+.pt-footer-heading {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  color: #1a1a1a !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.1em !important;
+  margin: 0 0 20px !important;
+}
+
+.pt-footer-links {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.pt-footer-links li {
+  margin-bottom: 12px !important;
+}
+
+.pt-footer-links a {
+  font-size: 14px !important;
+  color: #666 !important;
+  text-decoration: none !important;
+  transition: all 0.3s cubic-bezier(0.33, 1, 0.68, 1) !important;
+  display: inline-block !important;
+}
+
+.pt-footer-links a:hover {
+  color: #1a1a1a !important;
+  transform: translateX(4px) !important;
+}
+
+.pt-footer-text {
+  font-size: 13px !important;
+  color: #666 !important;
+  line-height: 1.7 !important;
+  margin: 0 0 16px !important;
+}
+
+/* WhatsApp Icon */
+.pt-footer-whatsapp {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 50% !important;
+  background: transparent !important;
+  border: 1px solid #1a1a1a !important;
+  color: #1a1a1a !important;
+  transition: all 0.4s cubic-bezier(0.33, 1, 0.68, 1) !important;
+}
+
+.pt-footer-whatsapp:hover {
+  background: #1a1a1a !important;
+  color: #ffffff !important;
+  transform: scale(1.1) rotate(15deg) !important;
+}
+
+/* Contact Form */
+.pt-footer-contact-form {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+}
+
+.pt-footer-contact-input {
+  padding: 10px 14px !important;
+  border: 1px solid #d0d0d0 !important;
+  border-radius: 4px !important;
+  font-size: 11px !important;
+  color: #1a1a1a !important;
+  background: #fafafa !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  transition: all 0.3s ease !important;
+}
+
+.pt-footer-contact-input:focus {
+  border-color: #1a1a1a !important;
+  background: #ffffff !important;
+  outline: none !important;
+}
+
+.pt-footer-contact-input::placeholder {
+  color: #999 !important;
+}
+
+.pt-footer-contact-button {
+  padding: 11px 20px !important;
+  background: #1a1a1a !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 4px !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.1em !important;
+  cursor: pointer !important;
+  transition: all 0.4s cubic-bezier(0.33, 1, 0.68, 1) !important;
+}
+
+.pt-footer-contact-button:hover {
+  background: #333 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+}
+
+.footer .newsletter p {
+  font-size: 14px !important;
+  color: #666 !important;
+  margin-bottom: 24px !important;
+  line-height: 1.6 !important;
+}
+
+/* Email input styling - rounded pill shape */
+.footer .newsletter form,
+.footer .newsletter-form {
+  position: relative !important;
+  max-width: 500px !important;
+  margin: 0 auto !important;
+}
+
+.footer .newsletter input[type="email"],
+.footer .newsletter-form input[type="email"] {
+  background: white !important;
+  border: 1px solid #d0d0d0 !important;
+  border-radius: 50px !important;
+  padding: 14px 120px 14px 24px !important;
+  font-size: 14px !important;
+  color: #1a1a1a !important;
+  width: 100% !important;
+  transition: border-color 0.3s ease !important;
+}
+
+.footer .newsletter input[type="email"]:focus {
+  border-color: #1a1a1a !important;
+  outline: none !important;
+}
+
+.footer .newsletter input[type="email"]::placeholder {
+  color: #999 !important;
+}
+
+/* Submit button - arrow icon */
+.footer .newsletter button[type="submit"],
+.footer .newsletter-form button {
+  position: absolute !important;
+  right: 4px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  background: transparent !important;
+  color: #1a1a1a !important;
+  border: none !important;
+  border-radius: 50% !important;
+  padding: 10px !important;
+  font-size: 18px !important;
+  cursor: pointer !important;
+  transition: opacity 0.3s ease !important;
+  width: auto !important;
+  min-width: auto !important;
+}
+
+.footer .newsletter button[type="submit"]:hover {
+  opacity: 0.7 !important;
+}
+
+/* ===== Large Animated Store Name ===== */
+.pt-footer-store-name {
+  text-align: center !important;
+  margin: 0 0 60px !important;
+  padding: 0 24px !important;
+  overflow: hidden !important;
+}
+
+.pt-footer-store-name__text,
+.footer .pt-footer-store-name__text,
+.section .pt-footer-store-name__text,
+.pt-footer-store-name h2 {
+  font-size: var(--store-name-font-size, clamp(80px, 15vw, 220px)) !important;
+  font-weight: var(--store-name-font-weight, 400) !important;
+  letter-spacing: -0.04em !important;
+  color: var(--store-name-color, #1a1a1a) !important;
+  line-height: 0.9 !important;
+  text-transform: lowercase !important;
+  font-family: var(--store-name-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif) !important;
+  margin: 0 !important;
+  display: inline-block !important;
+  animation: slideInScale 1.2s cubic-bezier(0.16, 1, 0.3, 1) backwards !important;
+  animation-delay: 0.7s !important;
+  transition: all 0.6s cubic-bezier(0.33, 1, 0.68, 1) !important;
+}
+
+.pt-footer-store-name__text:hover {
+  letter-spacing: 0.02em !important;
+  transform: scale(1.02) !important;
+}
+
+/* ===== Footer Bottom ===== */
+.pt-footer-bottom {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 30px 40px 0 !important;
+  border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
+  animation: fadeIn 0.8s ease-out 0.9s backwards !important;
+}
+
+.pt-footer-copyright {
+  font-size: 11px !important;
+  color: #999 !important;
+  margin: 0 !important;
+}
+
+.pt-footer-social {
+  display: flex !important;
+  gap: 16px !important;
+  align-items: center !important;
+}
+
+.pt-footer-social a {
+  color: #1a1a1a !important;
+  transition: all 0.4s cubic-bezier(0.33, 1, 0.68, 1) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.pt-footer-social a:hover {
+  color: #666 !important;
+  transform: translateY(-3px) scale(1.1) !important;
+}
+
+/* ===== Animations ===== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInScale {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Footer menu columns */
+.footer .footer-menu,
+.footer .footer-block,
+.footer [class*="footer-block"] {
+  margin-bottom: 0 !important;
+}
+
+.footer .footer-menu h3,
+.footer .footer-block h3,
+.footer .footer-block .heading,
+.footer .footer-block [role="heading"] {
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  color: #1a1a1a !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  margin-bottom: 20px !important;
+}
+
+.footer .footer-menu ul,
+.footer .footer-block ul {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.footer .footer-menu li,
+.footer .footer-block li {
+  margin-bottom: 12px !important;
+}
+
+.footer .footer-menu a,
+.footer .footer-block a {
+  font-size: 14px !important;
+  color: #666 !important;
+  text-decoration: none !important;
+  transition: color 0.3s ease !important;
+}
+
+.footer .footer-menu a:hover,
+.footer .footer-block a:hover {
+  color: #1a1a1a !important;
+}
+
+/* Contact form section */
+.footer .footer-block.contact-form input,
+.footer .footer-block.contact-form textarea {
+  background: white !important;
+  border: 1px solid #d0d0d0 !important;
+  border-radius: 4px !important;
+  padding: 10px 14px !important;
+  font-size: 14px !important;
+  width: 100% !important;
+  margin-bottom: 10px !important;
+}
+
+.footer .footer-block.contact-form button {
+  background: #1a1a1a !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 4px !important;
+  padding: 10px 20px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  cursor: pointer !important;
+  transition: background 0.3s ease !important;
+}
+
+.footer .footer-block.contact-form button:hover {
+  background: #333 !important;
+}
+
+/* Footer bottom - copyright and social */
+.footer .footer-bottom,
+.footer .footer-utilities,
+.footer [class*="footer-bottom"] {
+  border-top: none !important;
+  padding: 30px 40px 0 !important;
+  margin-top: 0 !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 20px !important;
+}
+
+.footer .footer-bottom p,
+.footer .footer-utilities p,
+.footer .copyright {
+  font-size: 12px !important;
+  color: #999 !important;
+  margin: 0 !important;
+  text-align: left !important;
+}
+
+.footer .footer-bottom a,
+.footer .footer-utilities a {
+  color: #999 !important;
+  text-decoration: none !important;
+  transition: color 0.3s ease !important;
+}
+
+.footer .footer-bottom a:hover,
+.footer .footer-utilities a:hover {
+  color: #1a1a1a !important;
+}
+
+/* Social icons */
+.footer .social-icons,
+.footer [class*="social"] {
+  display: flex !important;
+  gap: 16px !important;
+  align-items: center !important;
+}
+
+.footer .social-icons a,
+.footer [class*="social"] a {
+  color: #1a1a1a !important;
+  font-size: 20px !important;
+  transition: opacity 0.3s ease !important;
+}
+
+.footer .social-icons a:hover,
+.footer [class*="social"] a:hover {
+  opacity: 0.6 !important;
+}
+
+/* Logo in footer */
+.footer .footer-logo,
+.footer [class*="footer-logo"] {
+  margin-bottom: 30px !important;
+}
+
+.footer .footer-logo img {
+  max-width: 120px !important;
+  height: auto !important;
+}
+
+/* Tablet adjustments */
+@media (max-width: 990px) {
+  .pt-footer-columns {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 50px !important;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 749px) {
+  .footer {
+    padding: 60px 0 30px !important;
+    margin-top: 60px !important;
+  }
+  
+  .pt-footer-newsletter {
+    margin-bottom: 60px !important;
+  }
+  
+  .pt-footer-newsletter__title {
+    font-size: 28px !important;
+  }
+  
+  .pt-footer-newsletter__input {
+    padding: 14px 56px 14px 20px !important;
+  }
+  
+  .pt-footer-columns {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 32px 20px !important;
+    padding: 0 20px !important;
+    margin-bottom: 60px !important;
+  }
+
+  .pt-footer-block {
+    min-width: 0 !important;
+  }
+  
+  .pt-footer-store-name {
+    margin-bottom: 40px !important;
+  }
+  
+  .pt-footer-store-name__text,
+  .footer .pt-footer-store-name__text,
+  .section .pt-footer-store-name__text,
+  .pt-footer-store-name h2 {
+    font-size: clamp(60px, 18vw, 100px) !important;
+  }
+  
+  .pt-footer-bottom {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 20px !important;
+    padding: 24px !important;
+    text-align: center !important;
+  }
+}
+
+/* Ultra-specific overrides to ensure styles are applied */
+.section .pt-footer-newsletter h2.pt-footer-newsletter__title,
+.color-scheme-1 .pt-footer-newsletter h2.pt-footer-newsletter__title,
+h2.pt-footer-newsletter__title {
+  font-size: clamp(36px, 5vw, 52px) !important;
+  font-weight: 400 !important;
+  color: #4a4a4a !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif !important;
+}
+
+.section .pt-footer-store-name h2.pt-footer-store-name__text,
+.color-scheme-1 .pt-footer-store-name h2.pt-footer-store-name__text,
+h2.pt-footer-store-name__text {
+  font-size: clamp(80px, 15vw, 220px) !important;
+  font-weight: 400 !important;
+  color: #1a1a1a !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif !important;
+  letter-spacing: -0.04em !important;
+  line-height: 0.9 !important;
+}
+
+@media (max-width: 749px) {
+  .section .pt-footer-store-name h2.pt-footer-store-name__text,
+  .color-scheme-1 .pt-footer-store-name h2.pt-footer-store-name__text,
+  h2.pt-footer-store-name__text {
+    font-size: clamp(60px, 18vw, 100px) !important;
+  }
+}

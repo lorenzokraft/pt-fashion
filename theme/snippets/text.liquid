@@ -39,6 +39,19 @@
       if block_settings.color != ''
         echo ' custom-color '
       endif
+    else
+      if block_settings.font != blank and block_settings.font != 'var(--font-body--family)'
+        echo ' custom-typography '
+      endif
+      if block_settings.font_weight != blank
+        echo ' custom-typography '
+      endif
+      if block_settings.font_size != blank and block_settings.font_size != '' and block_settings.font_size != '1rem'
+        echo ' custom-typography custom-font-size '
+      endif
+      if block_settings.color != ''
+        echo ' custom-color '
+      endif
     endif
     if block_settings.background
       echo ' text-block--background '

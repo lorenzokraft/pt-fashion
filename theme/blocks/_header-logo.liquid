@@ -36,9 +36,12 @@
   style="
     {% render 'size-style', settings: block_settings %}
     {% render 'spacing-style', settings: block_settings %}
-    --font-family: var(--font-body--family);
+    --font-family: {{ block_settings.logo_font_family | default: 'var(--font-body--family)' }};
     --font-style: var(--font-body--style);
-    --font-weight: 600;
+    --font-weight: {{ block_settings.logo_font_weight | default: '600' }};
+    --font-size--md: {{ block_settings.logo_font_size | default: 16 }}px;
+    --text-transform: {{ block_settings.logo_text_transform | default: 'none' }};
+    --letter-spacing: {{ block_settings.logo_letter_spacing | default: 0 }}px;
   "
   {{ block.shopify_attributes }}
 >
@@ -91,6 +94,8 @@
     font-weight: var(--font-weight);
     font-style: var(--font-style);
     color: var(--color-foreground);
+    text-transform: var(--text-transform);
+    letter-spacing: var(--letter-spacing);
     justify-content: center;
     align-items: center;
     text-decoration: none;
@@ -159,6 +164,122 @@
       "id": "hide_logo_on_home_page",
       "label": "t:settings.hide_logo_on_home_page",
       "info": "t:info.hide_logo_on_home_page_help"
+    },
+    {
+      "type": "header",
+      "content": "Logo Text Styling"
+    },
+    {
+      "type": "select",
+      "id": "logo_font_family",
+      "label": "Font Family",
+      "options": [
+        {
+          "value": "var(--font-heading--family)",
+          "label": "Heading Font"
+        },
+        {
+          "value": "var(--font-body--family)",
+          "label": "Body Font"
+        },
+        {
+          "value": "Arial, sans-serif",
+          "label": "Arial"
+        },
+        {
+          "value": "'Helvetica Neue', Helvetica, sans-serif",
+          "label": "Helvetica"
+        },
+        {
+          "value": "'Times New Roman', Times, serif",
+          "label": "Times New Roman"
+        },
+        {
+          "value": "Georgia, serif",
+          "label": "Georgia"
+        },
+        {
+          "value": "'Courier New', Courier, monospace",
+          "label": "Courier"
+        }
+      ],
+      "default": "var(--font-body--family)"
+    },
+    {
+      "type": "range",
+      "id": "logo_font_size",
+      "label": "Font Size",
+      "min": 12,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "logo_font_weight",
+      "label": "Font Weight",
+      "options": [
+        {
+          "value": "300",
+          "label": "Light (300)"
+        },
+        {
+          "value": "400",
+          "label": "Regular (400)"
+        },
+        {
+          "value": "500",
+          "label": "Medium (500)"
+        },
+        {
+          "value": "600",
+          "label": "Semi Bold (600)"
+        },
+        {
+          "value": "700",
+          "label": "Bold (700)"
+        },
+        {
+          "value": "800",
+          "label": "Extra Bold (800)"
+        }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "select",
+      "id": "logo_text_transform",
+      "label": "Text Transform",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "uppercase",
+          "label": "UPPERCASE"
+        },
+        {
+          "value": "lowercase",
+          "label": "lowercase"
+        },
+        {
+          "value": "capitalize",
+          "label": "Capitalize"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "range",
+      "id": "logo_letter_spacing",
+      "label": "Letter Spacing",
+      "min": -2,
+      "max": 10,
+      "step": 0.5,
+      "unit": "px",
+      "default": 0
     },
     {
       "type": "header",
