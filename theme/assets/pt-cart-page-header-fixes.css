@@ -1,56 +1,67 @@
-/* Cart Page Header Fixes */
+/* Header Fixes for non-home pages (logo + icons visibility) */
 
-/* Fix 1: Make logo visible on non-home pages (cart, product, collection) */
-.template-cart .header-logo,
-.template-product .header-logo,
-.template-collection .header-logo {
+/* Home page is intentionally left untouched (transparent header looks great).
+   Every other page forces a dark, visible logo + icons. */
+
+body:not(.template-index) .header,
+body:not(.template-index) .header * {
+  --color-foreground: #1a1a1a;
+  --color-foreground-rgb: 26, 26, 26;
+}
+
+/* Logo text + image */
+body:not(.template-index) .header-logo,
+body:not(.template-index) .header-logo a,
+body:not(.template-index) .header-logo span {
   opacity: 1 !important;
   visibility: visible !important;
   color: #1a1a1a !important;
 }
 
-.template-cart .header-logo svg,
-.template-product .header-logo svg,
-.template-collection .header-logo svg {
+body:not(.template-index) .header-logo svg,
+body:not(.template-index) .header-logo svg path {
   fill: #1a1a1a !important;
   color: #1a1a1a !important;
 }
 
-/* Fix 2: Prevent cart text from overlapping menu on cart page */
-.template-cart .header-actions__action.action__cart {
-  pointer-events: none !important;
-  opacity: 0.3 !important;
+body:not(.template-index) .header-logo img {
+  filter: none !important;
+  opacity: 1 !important;
 }
 
-/* Fix 3: Make cart icon visible and styled on cart page */
-.template-cart .header-actions__action.action__cart svg,
-.template-cart .header-actions__action.action__cart .icon {
+/* Menu links */
+body:not(.template-index) .header-menu a,
+body:not(.template-index) .header-menu button {
+  color: #1a1a1a !important;
+}
+
+/* All header action icons (account, search, cart) */
+body:not(.template-index) .header-actions svg,
+body:not(.template-index) .header-actions svg path,
+body:not(.template-index) .header-actions .svg-wrapper svg {
   fill: #1a1a1a !important;
+  color: #1a1a1a !important;
+  stroke: #1a1a1a !important;
+  opacity: 1 !important;
+}
+
+body:not(.template-index) .header-actions__action {
   color: #1a1a1a !important;
   opacity: 1 !important;
 }
 
-.template-cart .cart-bubble {
+/* Cart count bubble stays visible with dark pill */
+body:not(.template-index) .cart-bubble,
+body:not(.template-index) .cart-bubble__background {
   background: #1a1a1a !important;
   color: #ffffff !important;
 }
 
-/* Fix 4: Ensure header text is visible on non-home pages */
-.template-cart .header,
-.template-product .header,
-.template-collection .header {
-  color: #1a1a1a !important;
+body:not(.template-index) .cart-bubble__text {
+  color: #ffffff !important;
 }
 
-.template-cart .header-menu a,
-.template-product .header-menu a,
-.template-collection .header-menu a {
-  color: #1a1a1a !important;
-}
-
-.template-cart .header-actions svg,
-.template-product .header-actions svg,
-.template-collection .header-actions svg {
-  fill: #1a1a1a !important;
-  color: #1a1a1a !important;
+/* Hamburger toggle lines: dark on non-home pages (white only suits home hero) */
+body:not(.template-index) .pt-hamburger__line {
+  background: #1a1a1a !important;
 }

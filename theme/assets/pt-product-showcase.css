@@ -313,6 +313,29 @@
   cursor: not-allowed;
 }
 
+.pt-add-to-cart-btn.is-loading {
+  opacity: 0.85;
+  cursor: progress;
+}
+
+.pt-add-to-cart-btn.is-added {
+  background: #3f5e15;
+}
+
+.pt-add-to-cart-btn.is-error {
+  background: #b3261e;
+}
+
+@keyframes pt-cart-pulse {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+
+.pt-cart-pulse {
+  animation: pt-cart-pulse 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
 /* Navigation - hide mobile buttons on desktop */
 .pt-nav-mobile-left,
 .pt-nav-mobile-right {

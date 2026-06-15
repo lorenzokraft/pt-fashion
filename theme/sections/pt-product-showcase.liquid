@@ -133,6 +133,7 @@
       this.init();
       this.init3DTilt();
       this.initSizeButtons();
+      this.initAddToCart();
     }
     
     init() {
@@ -198,6 +199,133 @@
           }
         });
       });
+    }
+
+    initAddToCart() {
+      const forms = document.querySelectorAll('.pt-product-form');
+
+      forms.forEach(form => {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          this.addToCart(form);
+        });
+      });
+    }
+
+    async addToCart(form) {
+      const button = form.querySelector('.pt-add-to-cart-btn');
+      if (!button || button.disabled || button.dataset.loading === 'true') return;
+
+      const originalText = button.textContent.trim();
+      button.dataset.loading = 'true';
+      button.classList.add('is-loading');
+      button.textContent = 'Adding...';
+
+      const formData = new FormData(form);
+
+      try {
+        const addUrl = (window.Theme && window.Theme.routes && window.Theme.routes.cart_add_url) || '/cart/add';
+        const response = await fetch(addUrl + '.js', {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: formData
+        });
+
+        const data = await response.json();
+
+        if (data.status) {
+          button.textContent = data.message || 'Unavailable';
+          button.classList.add('is-error');
+          setTimeout(() => {
+            button.textContent = originalText;
+            button.classList.remove('is-error');
+            button.dataset.loading = 'false';
+            button.classList.remove('is-loading');
+          }, 1800);
+          return;
+        }
+
+        const slide = form.closest('.pt-showcase-slide');
+        const image = slide ? slide.querySelector('.pt-showcase-image') : null;
+        if (image) this.flyToCart(image);
+
+        let cart = null;
+        try {
+          const cartRes = await fetch('/cart.js');
+          cart = await cartRes.json();
+        } catch (_) {}
+
+        const quantity = parseInt(formData.get('quantity'), 10) || 1;
+
+        document.dispatchEvent(new CustomEvent('cart:update', {
+          bubbles: true,
+          detail: {
+            resource: cart,
+            sourceId: 'pt-product-showcase',
+            data: {
+              source: 'product-form-component',
+              itemCount: quantity,
+              productId: data.product_id ? String(data.product_id) : undefined
+            }
+          }
+        }));
+
+        button.textContent = 'Added';
+        button.classList.remove('is-loading');
+        button.classList.add('is-added');
+        setTimeout(() => {
+          button.textContent = originalText;
+          button.classList.remove('is-added');
+          button.dataset.loading = 'false';
+        }, 1600);
+      } catch (error) {
+        console.error('Add to cart failed:', error);
+        button.textContent = originalText;
+        button.classList.remove('is-loading');
+        button.dataset.loading = 'false';
+      }
+    }
+
+    flyToCart(image) {
+      const cartIcon = document.querySelector('cart-icon') ||
+                       document.querySelector('.header-actions__cart-icon') ||
+                       document.querySelector('.action__cart');
+      if (!cartIcon) return;
+
+      const imgRect = image.getBoundingClientRect();
+      const cartRect = cartIcon.getBoundingClientRect();
+
+      const clone = image.cloneNode(true);
+      clone.style.position = 'fixed';
+      clone.style.left = imgRect.left + 'px';
+      clone.style.top = imgRect.top + 'px';
+      clone.style.width = imgRect.width + 'px';
+      clone.style.height = imgRect.height + 'px';
+      clone.style.objectFit = 'cover';
+      clone.style.borderRadius = '12px';
+      clone.style.zIndex = '99999';
+      clone.style.pointerEvents = 'none';
+      clone.style.transition = 'all 0.9s cubic-bezier(0.5, -0.2, 0.3, 1)';
+      clone.style.opacity = '0.95';
+      document.body.appendChild(clone);
+
+      const targetX = cartRect.left + cartRect.width / 2;
+      const targetY = cartRect.top + cartRect.height / 2;
+
+      requestAnimationFrame(() => {
+        clone.style.left = targetX + 'px';
+        clone.style.top = targetY + 'px';
+        clone.style.width = '40px';
+        clone.style.height = '40px';
+        clone.style.opacity = '0.2';
+        clone.style.transform = 'rotate(15deg)';
+      });
+
+      setTimeout(() => {
+        clone.remove();
+        cartIcon.classList.add('pt-cart-pulse');
+        setTimeout(() => cartIcon.classList.remove('pt-cart-pulse'), 500);
+      }, 900);
     }
   }
   
